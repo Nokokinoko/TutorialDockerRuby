@@ -34,11 +34,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # 有効化していない状態でログイン
     log_in_as(user)
     assert_not is_logged_in?
-    get edit_account_activation_path("Invalid token", email: user.email) # 有効化トークンが不正の場合
+    # トークン無効
+    get edit_account_activation_path("Invalid token", email: user.email)
     assert_not is_logged_in?
-    get edit_account_activation_path(user.activation_token, email: 'wrong') # メールアドレスが無効の場合
+    # メールアドレス無効
+    get edit_account_activation_path(user.activation_token, email: 'wrong')
     assert_not is_logged_in?
-    get edit_account_activation_path(user.activation_token, email: user.email) # メールアドレスと有効化トークンが正常の場合
+    # メールアドレスとトークンが有効
+    get edit_account_activation_path(user.activation_token, email: user.email)
     assert user.reload.activated?
     follow_redirect! # 指定リダイレクトへ移動
     assert_template 'users/show'

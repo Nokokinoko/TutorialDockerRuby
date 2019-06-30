@@ -10,5 +10,4 @@ example@railstutorial.org / foobar
 example-[1-99]@railstutorial.org / password  
 
 ## Note
-skip 10.3.3, 13.2.1, 13.3.3, 14.2.3 (pagination)  
-skip 13.4 (upload image)
+gem will_paginate to kaminari

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated?
+    @microposts = @user.microposts.page(params[:page])
   end
   
   def new
@@ -52,15 +53,6 @@ class UsersController < ApplicationController
     end
     
     # before
-    def logged_in_user
-      # ログイン判断
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-    
     def correct_user
       # 対象ユーザが自分自身か判断
       @user = User.find(params[:id])

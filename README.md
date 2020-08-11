@@ -1,7 +1,7 @@
 # TutorialDockerRuby
 https://railstutorial.jp/
   
-- ruby: 2.5.3
+- ruby: 2.5.8
 - rails: 5.2.2
 - mysql: 5.7
 
